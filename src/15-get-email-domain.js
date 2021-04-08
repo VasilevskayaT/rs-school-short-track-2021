@@ -9,7 +9,7 @@
  *
  */
 function getEmailDomain(mail) {
-  return mail.split('@1').reverse()[0];
+  return mail.split('@').reverse()[0];
 }
 
 module.exports = getEmailDomain;
