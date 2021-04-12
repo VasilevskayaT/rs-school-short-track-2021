@@ -16,9 +16,29 @@
  *   this.next = null;
  * }
  */
-
 function removeKFromList(arr, num) {
-  return arr.filter((item) => item !== num);
+  function ListNode(x) {
+    this.value = x;
+    this.next = null;
+  }
+  const fromListToArray = (listNode, array = []) => {
+    const [number, nodeList] = Object.values(listNode);
+    array.push(number);
+    if (nodeList) {
+      return fromListToArray(nodeList, array);
+    }
+    return array;
+  };
+
+  return fromListToArray(arr).filter((item) => item !== num).reverse().reduce((acc, cur) => {
+    if (acc) {
+      const node = new ListNode(cur);
+      node.next = acc;
+      return node;
+    }
+
+    return new ListNode(cur);
+  }, null);
 }
 
 module.exports = removeKFromList;
